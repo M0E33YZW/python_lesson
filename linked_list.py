@@ -52,7 +52,7 @@ class List:
     
 
     # 線形リストの内容を標準出力へ出力する
-    # 引数 self  レシーバ
+    # 引数 self レシーバ
     # 戻値 なし
     def show(self): 
         tmp = self.head.next
