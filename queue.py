@@ -38,30 +38,86 @@ class WaitingList:
     self.previous = self.next(self.previous)
     return num
 
+def print_object_diagram(list):
+   
+  print('```plantuml')
+  print('@startuml\n')
+  
+  print('map ' + str(id(list)) +' {')
+  print('    0 => ' +str(q.admission[0]))
+  print('    1 => ' +str(q.admission[1]))
+  print('    2 => ' +str(q.admission[2]))
+  print('    3 => ' +str(q.admission[3]))
+  print('}\n')
+
+  print_list(list)
+
+  print('@enduml')
+  print('```\n')
+
+def print_list(list):
+
+    print('map WaitingList {')
+    print('    admission *-> ' + str(id(list)))
+    print('    capacity => ' +str(q.capacity))
+    print('    previous => ' +str(q.previous))
+    print('    behind => ' +str(q.behind))
+    print('}\n')
+
+print('# Object diagram')
+
 q = WaitingList(3)
+print('## WaitingList()')
+print_object_diagram(q)
 
-# ENQUEUE -------------------------
-r = q.enqueue("a")
-print(f'q.enqueue("a"), success:{r}')
+q.enqueue("a")
+print('## q.enqueue("a")')
+print_object_diagram(q)
 
-r = q.enqueue("b")
-print(f'q.enqueue("b"), success:{r}')
+q.enqueue("b")
+print('## q.enqueue("b")')
+print_object_diagram(q)
 
-r = q.enqueue("c")
-print(f'q.enqueue("c"), success:{r}')
+q.enqueue("c")
+print('## q.enqueue("c")')
+print_object_diagram(q)
 
-r = q.enqueue("d")
-print(f'q.enqueue("d"), success:{r}')
+q.dequeue()
+print('## q.dequeue()')
+print_object_diagram(q)
 
-# DEQUEUE -------------------------
-r = q.dequeue()
-print(f'q.dequeue(), success:{r}')
+q.dequeue()
+print('## q.dequeue()')
+print_object_diagram(q)
 
-r = q.dequeue()
-print(f'q.dequeue(), success:{r}')
+q.dequeue()
+print('## q.dequeue()')
+print_object_diagram(q)
 
-r = q.dequeue()
-print(f'q.dequeue(), success:{r}')
+# q = WaitingList(3)
 
-r = q.dequeue()
-print(f'q.dequeue(), success:{r}')
+# # ENQUEUE -------------------------
+# r = q.enqueue("a")
+# print(f'q.enqueue("a"), success:{r}')
+
+# r = q.enqueue("b")
+# print(f'q.enqueue("b"), success:{r}')
+
+# r = q.enqueue("c")
+# print(f'q.enqueue("c"), success:{r}')
+
+# r = q.enqueue("d")
+# print(f'q.enqueue("d"), success:{r}')
+
+# # DEQUEUE -------------------------
+# r = q.dequeue()
+# print(f'q.dequeue(), success:{r}')
+
+# r = q.dequeue()
+# print(f'q.dequeue(), success:{r}')
+
+# r = q.dequeue()
+# print(f'q.dequeue(), success:{r}')
+
+# r = q.dequeue()
+# print(f'q.dequeue(), success:{r}')
