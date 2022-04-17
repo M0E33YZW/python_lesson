@@ -52,19 +52,51 @@ def post_order(part):
     post_order(part.right)
     print(part.name)
 
-top = Parts('A')
-top.left = Parts('B')
-top.right = Parts('H')
-top.left.left = Parts('C')
-top.left.right = Parts('D')
-top.left.right.left = Parts('E')
-top.left.right.right = Parts('F')
-top.left.right.left.left = Parts('G')
-print('pre_order...')
-pre_order(top)
-print()
-print('in_order...')
-in_order(top)
-print()
-print('post_order...')
-post_order(top)
+def print_object_diagram(part):
+
+    print('## binary_tree')
+    print('```plantuml')
+    print('@startuml\n')
+    print_order(part)
+    print('@enduml')
+    print('```\n')
+
+def print_order(part):
+    if part == None:
+        return
+
+    print_order(part.left)
+    print_order(part.right)
+   
+    print('map ' + str(id(part)) +' {')
+    print('    name => ' + str(part.name))
+    if part.left == None:
+        print('    left => None')
+    else:
+        print('    left *-> ' + str(id(part.left)))
+    if part.right == None:
+        print('    right => None')
+    else:
+        print('    right *-> ' + str(id(part.right)))
+    print('}\n')
+
+def main():
+    top = Part('A')
+    top.left = Part('B')
+    top.right = Part('H')
+    top.left.left = Part('C')
+    top.left.right = Part('D')
+    top.left.right.left = Part('E')
+    top.left.right.right = Part('F')
+    top.left.right.left.left = Part('G')
+    print('pre_order...')
+    pre_order(top)
+    print()
+    print('in_order...')
+    in_order(top)
+    print()
+    print('post_order...')
+    post_order(top)
+    print_object_diagram(top)
+
+main()
