@@ -5,8 +5,8 @@
 
 class Part {
    name : str
-   left : None
-   right : None
+   left : Part
+   right : Part
    __init__()
 }
 

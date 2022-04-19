@@ -2,52 +2,52 @@
 ```plantuml
 @startuml
 
-map 4376289088 {
+map 4334509888 {
     name => C
     left => None
     right => None
 }
 
-map 4376288704 {
+map 4334509504 {
     name => G
     left => None
     right => None
 }
 
-map 4376288896 {
+map 4334509696 {
     name => E
-    left *-> 4376288704
+    left *--> 4334509504
     right => None
 }
 
-map 4376288800 {
+map 4334509600 {
     name => F
     left => None
     right => None
 }
 
-map 4376288992 {
+map 4334509792 {
     name => D
-    left *-> 4376288896
-    right *-> 4376288800
+    left *--> 4334509696
+    right *--> 4334509600
 }
 
-map 4376461616 {
+map 4334682416 {
     name => B
-    left *-> 4376289088
-    right *-> 4376288992
+    left *--> 4334509888
+    right *--> 4334509792
 }
 
-map 4376289184 {
+map 4334509984 {
     name => H
     left => None
     right => None
 }
 
-map 4376461808 {
+map 4334682608 {
     name => A
-    left *-> 4376461616
-    right *-> 4376289184
+    left *--> 4334682416
+    right *--> 4334509984
 }
 
 @enduml

@@ -73,11 +73,11 @@ def print_order(part):
     if part.left == None:
         print('    left => None')
     else:
-        print('    left *-> ' + str(id(part.left)))
+        print('    left *--> ' + str(id(part.left)))
     if part.right == None:
         print('    right => None')
     else:
-        print('    right *-> ' + str(id(part.right)))
+        print('    right *--> ' + str(id(part.right)))
     print('}\n')
 
 def main():
