@@ -1,7 +1,7 @@
-first_column_s  = lambda array: array[0]
-second_column_s = lambda array: array[1]
-second_column_i = lambda array: int(array[1])
-third_column_s  = lambda array: array[2]
+first_column_s  = lambda a: a[0]
+second_column_s = lambda a: a[1]
+second_column_i = lambda a: int(a[1])
+third_column_s  = lambda a: a[2]
 
 a = [
     ["apple" , "3", "1,000"],
