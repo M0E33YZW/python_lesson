@@ -13,12 +13,10 @@ class Memman:
         # 始点配列（要素数100）
         self.spos = [0] * 100
         self.spos[0] = self.MIN_VAL
-        # self.spos[1] = self.MAX_VAL
         # print(self.spos)
 
         # 終点配列（要素数100）
         self.epos = [0] * 100
-        # self.epos[0] = self.MIN_VAL
         self.epos[1] = self.MAX_VAL
         # print(self.epos)
 
@@ -68,7 +66,7 @@ class Memman:
                     self.spos[l + 1] = self.spos[l]
                     self.epos[l + 1] = self.epos[l]
                     l -= 1
-                
+
                 self.spos[i + 1] = ep + 1
                 self.epos[i + 1] = self.epos[i]
                 self.epos[i] = sp - 1
@@ -76,11 +74,11 @@ class Memman:
 
             print(self.spos)
             print(self.epos)
-        
-        else:    
+
+        else:
             print("一部又は全体が割当済み")
 
 m = Memman()
 m.Alloc(1, 3)
-# m.Alloc(5, 7)
-# m.Alloc(2, 4)
+m.Alloc(5, 7)
+m.Alloc(2, 4)
