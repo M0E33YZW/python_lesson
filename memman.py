@@ -31,7 +31,7 @@ class Memman:
         print('終点P > 終点[I]')
         print(ep, '>', self.epos[i])
         while ep > self.epos[i]:
-            i = i + 1
+            i += 1
 
         if self.spos[i] <= sp:
             print('始点[I] <= 始点P')
@@ -74,6 +74,7 @@ class Memman:
 
             print(self.spos)
             print(self.epos)
+            print('空リスト中の組数', self.num)
 
         else:
             print("一部又は全体が割当済み")
