@@ -23,7 +23,7 @@ class List:
     def insert(self, value): 
         previous = self.head
         current = previous.next
-        while current and value > current.value: #valueを昇順で挿入
+        while current and value > current.value: # valueを昇順で挿入
             previous = current
             current = current.next
         node = Node(value)
