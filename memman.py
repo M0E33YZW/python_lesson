@@ -27,7 +27,6 @@ class Memman:
         m.epos = epos
         return m
 
-
     # 引数 self レシーバ
     #     int: sp(始点P)
     #     int: ep(終点P)
@@ -35,19 +34,15 @@ class Memman:
     def Alloc(self, sp, ep):
         i = 0
 
-        # print('終点P > 終点[I]')
-        # print(ep, '>', self.epos[i])
+        # 終点P > 終点[I]
         while ep > self.epos[i]:
             i += 1
 
+        # 始点[I] <= 始点P
         if self.spos[i] <= sp:
-            # print('始点[I] <= 始点P')
-            # print(self.spos[i], '<=', sp)
 
+            # ①(始点[I] == 始点P) かつ (終点P == 終点[I])
             if self.spos[i] == sp and ep == self.epos[i]:
-                # print('①(始点[I] == 始点P) かつ (終点P == 終点[I])')
-                # print(self.spos[i], '==', sp, 'and', ep, '==', self.epos[i])
-
                 l = i + 1
                 while (l <= self.num):
                     self.spos[l - 1] = self.spos[l]
@@ -55,19 +50,16 @@ class Memman:
                     l += 1
                 self.num = self.num - 1
 
+            # ②(始点[I] == 始点P) かつ (終点P < 終点[I])
             elif self.spos[i] == sp and ep < self.epos[i]:
-                # print('②(始点[I] == 始点P) かつ (終点P < 終点[I])')
-                # print(self.spos[i], '==', sp, 'and', ep, '<', self.epos[i])
                 self.spos[i] = ep + 1
 
+            #③(始点[I] < 始点P) かつ (終点P == 終点[I])
             elif self.spos[i] < sp and ep == self.epos[i]:
-                # print('③(始点[I] < 始点P) かつ (終点P == 終点[I])')
-                # print(self.spos[i], '<', sp, 'and', ep, '==', self.epos[i])
                 self.epos[i] = sp - 1
 
+            # ④(始点[I] < 始点P) かつ (終点P < 終点[I])
             elif self.spos[i] < sp and ep < self.epos[i]:
-                # print('④(始点[I] < 始点P) かつ (終点P < 終点[I])')
-                # print(self.spos[i], '<', sp, 'and', ep, '<', self.epos[i])
                 l = self.num
                 while (l >= i + 1):
                     self.spos[l + 1] = self.spos[l]
@@ -86,7 +78,6 @@ class Memman:
         print(self.spos)
         print(self.epos)
         print('空リスト中の組数', self.num)
-
 
 # m = Memman()
 # m.print()
