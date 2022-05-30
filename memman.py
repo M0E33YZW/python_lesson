@@ -44,7 +44,7 @@ class Memman:
             # ①(始点[I] == 始点P) かつ (終点P == 終点[I])
             if self.spos[i] == sp and ep == self.epos[i]:
                 l = i + 1
-                while (l <= self.num):
+                while (l < self.num):
                     self.spos[l - 1] = self.spos[l]
                     self.epos[l - 1] = self.epos[l]
                     l += 1
@@ -61,7 +61,7 @@ class Memman:
 
             # ④(始点[I] < 始点P) かつ (終点P < 終点[I])
             elif self.spos[i] < sp and ep < self.epos[i]:
-                l = self.num
+                l = self.num - 1
                 while (l >= i + 1):
                     self.spos[l + 1] = self.spos[l]
                     self.epos[l + 1] = self.epos[l]
