@@ -48,13 +48,14 @@ class Memman:
                     self.spos[l - 1] = self.spos[l]
                     self.epos[l - 1] = self.epos[l]
                     l += 1
+
                 self.num = self.num - 1
 
             # ②(始点[I] == 始点P) かつ (終点P < 終点[I])
             elif self.spos[i] == sp and ep < self.epos[i]:
                 self.spos[i] = ep + 1
 
-            #③(始点[I] < 始点P) かつ (終点P == 終点[I])
+            # ③(始点[I] < 始点P) かつ (終点P == 終点[I])
             elif self.spos[i] < sp and ep == self.epos[i]:
                 self.epos[i] = sp - 1
 
@@ -78,6 +79,13 @@ class Memman:
         print(self.spos)
         print(self.epos)
         print('空リスト中の組数', self.num)
+    
+    # 引数 self レシーバ
+    #     int: sp(始点P)
+    #     int: ep(終点P)
+    # 戻値 なし
+    # def Free(self, sp, ep):
+    #     i = 0
 
 # m = Memman()
 # m.print()
