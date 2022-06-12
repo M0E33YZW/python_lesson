@@ -7,7 +7,7 @@ class Memman:
     # 引数 self レシーバ
     # 戻値 なし
     def __init__(self):
-    
+
         # 空リスト中の現在の組の数
         self.num = 1
 
@@ -41,7 +41,7 @@ class Memman:
         # 始点[I] <= 始点P
         if self.spos[i] <= sp:
 
-            # ①(始点[I] == 始点P) かつ (終点P == 終点[I])
+            # ① 始点[I] == 始点P かつ 終点P == 終点[I]
             if self.spos[i] == sp and ep == self.epos[i]:
                 l = i + 1
                 while (l < self.num):
@@ -49,17 +49,17 @@ class Memman:
                     self.epos[l - 1] = self.epos[l]
                     l += 1
 
-                self.num = self.num - 1
+                self.num -= 1
 
-            # ②(始点[I] == 始点P) かつ (終点P < 終点[I])
+            # ② 始点[I] == 始点P かつ 終点P < 終点[I]
             elif self.spos[i] == sp and ep < self.epos[i]:
                 self.spos[i] = ep + 1
 
-            # ③(始点[I] < 始点P) かつ (終点P == 終点[I])
+            # ③ 始点[I] < 始点P かつ 終点P == 終点[I]
             elif self.spos[i] < sp and ep == self.epos[i]:
                 self.epos[i] = sp - 1
 
-            # ④(始点[I] < 始点P) かつ (終点P < 終点[I])
+            # ④ 始点[I] < 始点P かつ 終点P < 終点[I]
             elif self.spos[i] < sp and ep < self.epos[i]:
                 l = self.num - 1
                 while (l >= i + 1):
@@ -71,7 +71,6 @@ class Memman:
                 self.epos[i + 1] = self.epos[i]
                 self.epos[i] = sp - 1
                 self.num += 1
-            
         else:
             raise Exception("一部又は全体が割当済み")
 
@@ -84,8 +83,49 @@ class Memman:
     #     int: sp(始点P)
     #     int: ep(終点P)
     # 戻値 なし
-    # def Free(self, sp, ep):
-    #     i = 0
+    def Free(self, sp, ep):
+        i = 0
+        # 終点P > 始点[I]
+        while ep < self.spos[i]:
+            i += 1
+
+        # 終点[I] <= 終点P
+        if self.epos[i] <= ep:
+
+            # ① 終点[I] == 始点P-1 かつ 終点P+1 == 始点[I+1]
+            if self.epos[i] == sp - 1 and ep + 1 == self.spos[i + 1]:
+                l = i + 1
+
+                while (l < self.num):
+                    self.epos[l - 1] = self.epos[l]
+                    self.spos[l] = self.spos[l + 1]
+                    self.epos[l] = self.epos[l + 1]
+                    l += 1
+
+                self.num -= 1
+
+            # ② 終点[I] == 始点P-1 かつ 終点P+1 < 始点[I+1]
+            elif self.epos[i] == sp - 1 and ep + 1 < self.spos[i + 1]:
+                self.epos[i] = ep
+
+            # ③ 終点[I] < 始点P-1 かつ 終点P+1 == 始点[I+1]
+            elif self.epos[i] < sp - 1 and ep + 1 == self.spos[i + 1]:
+                self.spos[i + 1] = sp
+
+            # ④ 終点[I] < 始点P-1 かつ 終点P+1 < 始点[I+1]
+            elif self.epos[i] < sp - 1 and ep + 1 < self.spos[i + 1]:
+                l = self.num - 1
+                while (l >= i + 1):
+                    self.spos[l + 1] = self.spos[l]
+                    self.epos[l + 1] = self.epos[l]
+                    l -= 1
+
+                self.spos[i + 1] = sp
+                self.epos[i + 1] = ep
+                self.num += 1
+
+        else:
+            raise Exception("一部又は全体が割当済みでない")
 
 # m = Memman()
 # m.print()
