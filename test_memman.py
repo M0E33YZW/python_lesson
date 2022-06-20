@@ -7,9 +7,9 @@ from memman import MAX_VAL
 class MemmanTest():
 
     def __init__(self, before, sp, ep, after, err):
+        self.before = before
         self.sp = sp
         self.ep = ep
-        self.before = before
         self.after = after
         self.err = err
 
