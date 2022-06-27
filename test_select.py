@@ -11,7 +11,8 @@ class SelectTest():
 SelectTestCases = [
     SelectTest([3, 5, 6, 4, 7, 2, 1], 2, 2),
     SelectTest([1, 3, 2, 4, 2, 2, 2], 2, 2),
-    SelectTest([3, 5, 6, 4, 7, 2, 1], 2, 4),
+    SelectTest([3, 5, 4, 7, 2, 10], 2, 3),
+    SelectTest(['8', '5', '4', '7', '2', '10'], 3, '4'),
 ]
 
 class SelectTestCase(unittest.TestCase):
