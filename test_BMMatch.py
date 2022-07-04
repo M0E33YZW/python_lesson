@@ -8,16 +8,10 @@ class BMMatchTest():
         self.want = want
 
 BMMatchTestCases = [
-    BMMatchTest('asdfjnjant', 'fjn', 3),
-    BMMatchTest('aespatwice', 'aespa', 0),
-    BMMatchTest('aespatwice', 'aespaa', -1),
-    BMMatchTest('vivizstrayki', 'rayki', 7),
-    BMMatchTest('vivizstrayki', 'raykia', -1),
     BMMatchTest('ACBBMACACBABC', 'ACAC', 5),
     BMMatchTest('ABCXBBACABACADEC', 'ACAB', 6),
     BMMatchTest('ACBBMACABABC', 'TWI', -1),
-    BMMatchTest('0123456789', '78', 7),
-    BMMatchTest('', '78', -1)
+    BMMatchTest('', 'ABC', -1)
 ]
 
 class BMMatchTestCase(unittest.TestCase):

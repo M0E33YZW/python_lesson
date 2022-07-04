@@ -15,6 +15,7 @@ def BMMatch(Text, Pat):
     Text = list(Text)
     Pat = list(Pat)
     print(Text, Pat)
+
     TextLen = len(Text) - 1 # 対象文字列の長さ（1以上）
     PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
 
@@ -37,7 +38,7 @@ def BMMatch(Text, Pat):
         PPat = PatLen 
 
         while Text[PText] == Pat[PPat]:
-            if PPat == 1:
+            if PPat == 0:
                 return PText
 
             PText = PText - 1
@@ -47,5 +48,4 @@ def BMMatch(Text, Pat):
 
     return -1
 
-# print(BMMatch(['A','C','B','B','M','A','C','A','B','A','B','C'], ['A','C','A','B']))
-# print(BMMatch(['A','B','C','X','B','B','A','C','A','B','A','C','A','D','E','C'], ['A','C','A','B']))
+print(BMMatch('ACBBMACACBABC', 'ACAC'))
