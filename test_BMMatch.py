@@ -10,6 +10,7 @@ class BMMatchTest():
 BMMatchTestCases = [
     BMMatchTest('ACBBMACACBABC', 'ACAC', 5),
     BMMatchTest('ABCXBBACABACADEC', 'ACAB', 6),
+    BMMatchTest('ABCXBBACABACADEC', 'ADECS', -1),
     BMMatchTest('ACBBMACABABC', 'TWI', -1),
     BMMatchTest('', 'ABC', -1)
 ]
