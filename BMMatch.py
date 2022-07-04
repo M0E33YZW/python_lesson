@@ -12,6 +12,9 @@ def Index(abc):
 
 
 def BMMatch(Text, Pat):
+    Text = list(Text)
+    Pat = list(Pat)
+    print(Text, Pat)
     TextLen = len(Text) - 1 # 対象文字列の長さ（1以上）
     PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
 

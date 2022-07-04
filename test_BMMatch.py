@@ -8,11 +8,16 @@ class BMMatchTest():
         self.want = want
 
 BMMatchTestCases = [
-    BMMatchTest(['A','C','B','B','M','A','C','A','B','A','B','C'], ['A','C','A','B'], 6),
-    BMMatchTest(['A','B','C','X','B','B','A','C','A','B','A','C','A','D','E','C'], ['A','C','A','B'], 9),
-    BMMatchTest(['A','C','B','B','M','A','C','A','B','A','B','C'], ['T','W','I','C','E'], 0), # エラー
-    BMMatchTest(['0','1','2','3','4','5','6','7','8','9'], ['7','8'], 8),
-    BMMatchTest([], ['7','8'], 0)
+    BMMatchTest('asdfjnjant', 'fjn', 3),
+    BMMatchTest('aespatwice', 'aespa', 0),
+    BMMatchTest('aespatwice', 'aespaa', -1),
+    BMMatchTest('vivizstrayki', 'rayki', 7),
+    BMMatchTest('vivizstrayki', 'raykia', -1),
+    BMMatchTest('ACBBMACACBABC', 'ACAC', 5),
+    BMMatchTest('ABCXBBACABACADEC', 'ACAB', 6),
+    BMMatchTest('ACBBMACABABC', 'TWI', -1),
+    BMMatchTest('0123456789', '78', 7),
+    BMMatchTest('', '78', -1)
 ]
 
 class BMMatchTestCase(unittest.TestCase):
