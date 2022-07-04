@@ -5,10 +5,10 @@
 # 対象文字列中に検索文字列が見つかった場合は、1以上の値を返す。
 # 検索文字列が見つからなかった場合は、-1を返す。
 
-def Index(aaa):
+def Index(abc):
     import string
     alphabets = string.ascii_uppercase
-    return alphabets.index(aaa)
+    return alphabets.index(abc)
 
 
 def BMMatch(Text, Pat):
