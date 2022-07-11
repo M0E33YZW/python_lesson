@@ -10,7 +10,7 @@ def upperCase(Text):
     
     for c in text:
         if  ord('a') <= ord(c) and ord(c) <= ord('z'):
-            upperText += chr(65 + upper(c))
+            upperText += chr(ord('A') + upper(c))
         else:
             upperText += c
 
