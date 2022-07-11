@@ -1,5 +1,4 @@
 def upper(abc):
-    ord(abc) - ord('a')
     return ord(abc) - ord('a')
 
 def upperCase(Text):
