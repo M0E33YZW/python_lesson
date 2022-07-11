@@ -1,17 +1,25 @@
-# 引数 List[str]
-# Text[]: 対象文字列が格納されている一次元配列
-#  Pat[]: 検索文字列が格納されている一次元配列
-# 返却値 int
-# 対象文字列中に検索文字列が見つかった場合は、1以上の値を返す。
-# 検索文字列が見つからなかった場合は、-1を返す。
+'''
+引数 List[str]
+Text[]: 対象文字列が格納されている一次元配列
+ Pat[]: 検索文字列が格納されている一次元配列
+返却値 int
+対象文字列中に検索文字列が見つかった場合は、1以上の値を返す。
+検索文字列が見つからなかった場合は、-1を返す。
+'''
 
 def Index(abc):
-    import string
-    alphabets = string.ascii_uppercase
-    return alphabets.index(abc)
+    # import string
+    # alphabets = string.ascii_uppercase
+    # return alphabets.index(abc)
+
+    # 文字コードで引算
+    return ord(abc) - ord('A')
 
 
 def BMMatch(Text, Pat):
+    if Text == '' and Pat == '':
+        return '文字列の入力がありません'
+
     Text = list(Text)
     Pat = list(Pat)
     print(Text, Pat)
@@ -48,4 +56,4 @@ def BMMatch(Text, Pat):
 
     return -1
 
-print(BMMatch('ACBBMACACBABC', 'ACAC'))
+# print(BMMatch('ACBBMACACBABC', 'ACAC'))

@@ -12,7 +12,12 @@ BMMatchTestCases = [
     BMMatchTest('ABCXBBACABACADEC', 'ACAB', 6),
     BMMatchTest('ABCXBBACABACADEC', 'ADECS', -1),
     BMMatchTest('ACBBMACABABC', 'TWI', -1),
-    BMMatchTest('', 'ABC', -1)
+    BMMatchTest('', 'ABC', -1),
+    BMMatchTest('AESPAAAAAGI_SELLE', 'AESPA', 0),
+    BMMatchTest('ABCVKIJ=HOPE', 'J-HOPE', -1),
+    BMMatchTest('-UJHJIKJNINGNINGHDBSJGV', 'NINGNING', 8),
+    BMMatchTest('', '', '文字列の入力がありません'),
+    # ※ testcase追加
 ]
 
 class BMMatchTestCase(unittest.TestCase):
