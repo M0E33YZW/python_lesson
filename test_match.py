@@ -8,6 +8,11 @@ class MatchTest():
         self.want = want
 
 MatchTestCases = [
+    MatchTest('引数に指定する複数の辞書', '複数', 7),
+    MatchTest('引数に指定する複数の辞書', '三井', -1),
+    MatchTest('引数に指定する複数の辞書', '辞書', 10),
+    MatchTest('Stringの引数をURLに割り当てられませんというエラーです', 'エラー', 26),
+    MatchTest('🐱🐶🐰🐯🐥🦊🐨🐹', '🐯🐥', 3),
     MatchTest('asdfjnjant', 'fjn', 3),
     MatchTest('aespatwice', 'aespa', 0),
     MatchTest('aespatwice', 'aespaa', -1),

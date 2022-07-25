@@ -7,29 +7,63 @@ Text[]: 対象文字列が格納されている一次元配列
 検索文字列が見つからなかった場合は、-1を返す。
 '''
 
-def Index(abc):
+def Index(chr):
     # import string
     # alphabets = string.ascii_uppercase
-    # return alphabets.index(abc)
+    # return alphabets.index(chr)
 
     # 文字コードで引算
-    return ord(abc) - ord('A')
+    return ord(chr) - ord('A')
 
 
 class Skipper():
 
+    # アルファベット大文字版
+    # def __init__(self, Pat):
+    #     PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
+    #     self.skip = [PatLen for _ in range(26)]
+
+    #     i = 0
+    #     while i < PatLen:
+    #         self.skip[Index(Pat[i])] = PatLen - i
+    #         i += 1
+
+
+    # def getNum(self, chr):
+    #     return self.skip[Index(chr)]
+
+
+    # ASCII版
+    # def __init__(self, Pat):
+    #     PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
+    #     self.skip = [PatLen for _ in range(128)]
+
+    #     i = 0
+    #     while i < PatLen:
+    #         self.skip[ord(Pat[i])] = PatLen - i
+    #         i += 1
+
+
+    # def getNum(self, chr):
+    #     return self.skip[ord(chr)]
+
+    # dict版
     def __init__(self, Pat):
-        PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
-        self.skip = [PatLen for _ in range(26)]
+        self.skip = {}
+        self.other = len(Pat)
 
         i = 0
-        while i < PatLen:
-            self.skip[Index(Pat[i])] = PatLen - i
+        while i < len(Pat) - 1:
+            self.skip[Pat[i]] = len(Pat) - 1 - i
+            # print(i, self.skip)
             i += 1
 
 
     def getNum(self, chr):
-        return self.skip[Index(chr)]
+        if chr in self.skip:
+            return self.skip[chr]
+        else:
+            return self.other
 
 
 def BMMatch(Text, Pat):
@@ -41,7 +75,7 @@ def BMMatch(Text, Pat):
     print(Text, Pat)
 
     TextLen = len(Text) - 1 # 対象文字列の長さ（1以上）
-    PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
+    PatLen  = len(Pat)  - 1 # 検索文字列の長さ（1以上）
 
     # '''
     # Skip = [0 for _ in range(26)] # 移動量を格納する要素数26の配列
@@ -75,6 +109,3 @@ def BMMatch(Text, Pat):
         PLast = PLast + skipper.getNum(Text[PLast])
 
     return -1
-
-print(BMMatch('ACBBMACACBABC', 'ACAC'))
-print(BMMatch('AABABCADCD', 'BCA'))
