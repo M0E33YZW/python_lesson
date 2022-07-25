@@ -16,6 +16,26 @@ def Index(abc):
     return ord(abc) - ord('A')
 
 
+class Skipper():
+
+    def __init__(self, Pat):
+        PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
+        self.skip = [PatLen for _ in range(26)]
+
+        i = 0
+        while i <= len(Pat) - 1:
+            self.skip[Index(Pat[i])] = PatLen - i
+            i += 1
+
+
+    def getNum(self, chr):
+
+        print(self.skip)
+        print(chr)
+        print(self.skip[Index(chr)])
+        return self.skip[Index(chr)]
+
+
 def BMMatch(Text, Pat):
     if Text == '' and Pat == '':
         return '文字列の入力がありません'
@@ -25,19 +45,24 @@ def BMMatch(Text, Pat):
     print(Text, Pat)
 
     TextLen = len(Text) - 1 # 対象文字列の長さ（1以上）
+    print('TextLen', TextLen)
     PatLen = len(Pat) - 1 # 検索文字列の長さ（1以上）
+    print('PatLen', PatLen)
 
+    # '''
     Skip = [0 for _ in range(26)] # 移動量を格納する要素数26の配列
 
     i = 0
     while i <= 25:
-        Skip[i] = PatLen 
+        Skip[i] = PatLen
         i += 1
 
     i = 0
-    while i <= PatLen - 1:
+    while i < PatLen:
         Skip[Index(Pat[i])] = PatLen - i
         i += 1
+    # '''
+    # skipper = Skipper(Pat)
 
     PLast = PatLen
 
@@ -53,7 +78,9 @@ def BMMatch(Text, Pat):
             PPat = PPat - 1
 
         PLast = PLast + Skip[Index(Text[PLast])]
+        # PLast = PLast + skipper.getNum(Text[PLast])
 
     return -1
 
-# print(BMMatch('ACBBMACACBABC', 'ACAC'))
+print(BMMatch('ACBBMACACBABC', 'ACAC'))
+print(BMMatch('AABABCADCD', 'BCA'))
