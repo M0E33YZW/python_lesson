@@ -26,7 +26,8 @@ class Memo:
         self.DataLen = 0
 
     # 1件のメモを追加する
-    def addMemo(self, textLen, text):
+    def addMemo(self, text):
+        textLen = len(text)
         self.Memo[self.MemoCnt] = self.DataLen
         self.MemoCnt = self.MemoCnt + 1
         self.Data[self.DataLen] = textLen
@@ -43,14 +44,14 @@ class Memo:
     def deleteMemo(self, pos):
 
         i = pos + 1
-        while i < self.MemoCnt:
+        while i < len(self.Memo):
             self.Memo[i - 1] = self.Memo[i]
             i += 1
         self.MemoCnt -= 1
 
     # 1件のメモの内容を変更する
-    def changeMemo(self, pos, textLen, text):
-
+    def changeMemo(self, pos, text):
+        textLen = len(text)
         self.Memo[pos] = self.DataLen
         self.Data[self.DataLen] = textLen
         self.DataLen += 1
@@ -101,37 +102,58 @@ class Memo:
             m += 1
 
         d = 0
-        while d < self.DataLen:
+        while d < len(self.Data):
             self.Data[d] = self.temp[d]
             d += 1
 
     def print(self):
-        print('Memo', self.Memo)
-        print('MemoMax', self.MemoMax)
-        print('MemoCnt', self.MemoCnt)
-        print('Data', self.Data)
-        print('DataMax', self.DataMax)
-        print('DataLen', self.DataLen)
+        data = []
+        for i in range(self.DataLen):
+            print(self.Data[i])
+            if self.Data[i] != '' and type(self.Data[i]) != int:
+                data.append(hex(ord(str(self.Data[i])))[2:]) # 16進表記
+            else:
+                data.append(str(self.Data[i]).zfill(2))
+                
+        list_print(self.Memo)
+        list_print(data)
+
+        moji = []
+        if self.DataLen == 0:
+            moji = []
+        else:
+            for i in range(self.DataLen):
+                if type(self.Data[i]) == int:
+                    moji += '__'
+                else:
+                    moji += self.Data[i]
+
+        list_print(moji)
+
+def list_print(list):
+    print('Data [', end='') 
+    for l in list:
+        print(str(l) + '_', end='')
+    print(']') 
 
 m = Memo()
 m.restMemo()
 m.print()
-m.addMemo(4, "Aoki")
-m.print()
-m.addMemo(4, "Imai")
-m.addMemo(3, "Uno")
-m.addMemo(4, "Endo")
-print('addMemo')
+m.addMemo("Aoki")
+m.addMemo("Imai")
+m.addMemo("Uno")
+m.addMemo("Endo")
+print('addMemo × 4')
 m.print()
 m.deleteMemo(0)
-print('deleteMemo')
+print('---\ndeleteMemo')
 m.print()
-m.changeMemo(2, 3, "Abe")
-print('changeMemo')
+m.changeMemo(2, "Abe")
+print('---\nchangeMemo')
 m.print()
 m.moveMemo(2, 0)
-print('moveMemo')
+print('---\nmoveMemo')
 m.print()
-print('clearGarbage')
+print('---\nclearGarbage')
 m.clearGarbage()
 m.print()
