@@ -1,18 +1,16 @@
-
-def Edit(Pattern, Value):
-    print('変更前')
-    print(Value)
-    print(Pattern)
+def Edit(P, V):
+    Pattern = list(P)
+    Value = list(V)
     fill = Pattern[0]
     signif = 'off'
     p = v = 0
 
     while p < len(Pattern):
 
-        if Pattern[p] == "□" or Pattern[p] == "■":
+        if Pattern[p] == "▯" or Pattern[p] == "▮":
 
             if signif == 'off':
-                if Pattern[p] != "□" and Value[v] != "■":
+                if Pattern[p] != "▯" and Value[v] != "▮":
 
                     if Value[v + 1] != "+":
                         signif = 'on'
@@ -35,9 +33,22 @@ def Edit(Pattern, Value):
 
         p += 1
     
-    print('変更後')
-    print(Pattern)
+    return ''.join(Pattern)
 
-Edit(["*", "□", "□", ",", "□", "□", "□", "#"], ["0", "0", "0", "0", "0", "+"])
-Edit(["*", "□", "□", "□", ".", "□", "□", "#"], ["0", "0", "0", "1", "2", "-"])
-Edit(["*", "□", "□", "■", ".", "□", "□", "#"], ["0", "0", "0", "1", "2", "+"])
+data = [
+    {'Pattern': "*▯▯,▯▯▯#",  'Value': "00000+" },
+    {'Pattern': "*▯▯▯.▯▯#",  'Value': "00012-" },
+    {'Pattern': "*▯▯▮.▯▯#",  'Value': "00012+" },
+]
+for d in data:
+    print(d['Pattern'], d['Value'], Edit(d['Pattern'], d['Value']))
+
+
+# 二次元配列
+# data = [ 
+#     ["*▯▯,▯▯▯#", "00000+"],
+#     ["*▯▯▯.▯▯#", "00012-"],
+#     ["*▯▯▮.▯▯#", "00012+"]
+# ]
+# for d in data:
+    # print(d[0], d[1], Edit(d[0], d[1]))
