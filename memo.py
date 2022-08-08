@@ -119,21 +119,21 @@ class Memo:
         list_print(data)
 
         moji = []
-        if self.DataLen == 0:
-            moji = []
-        else:
+        if self.DataLen != 0:
             for i in range(self.DataLen):
                 if type(self.Data[i]) == int:
-                    moji += '__'
+                    moji.append('  ')
                 else:
-                    moji += self.Data[i]
+                    moji.append(self.Data[i] + ' ')
 
         list_print(moji)
 
 def list_print(list):
-    print('Data [', end='') 
-    for l in list:
-        print(str(l) + '_', end='')
+    print('Data [', end='')
+    if list != []:
+        print(list[0], end='')
+        for i in range(1, len(list)):
+            print(' ' + str(list[i]), end='')
     print(']') 
 
 m = Memo()
