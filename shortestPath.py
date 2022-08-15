@@ -13,7 +13,9 @@ class Shortest:
         self.pDist = []
         self.pRoute = []
 
-    def ShortestPath(self, Distance: list[list[int]], sp: int, dp: int):
+
+    # 出発地から目的地に至る最短経路とその距離を求める
+    def ShortestPath(self: __init__, Distance: list[list[int]], sp: int, dp: int):
         nPoint = len(Distance[0])
 
         i = 0
@@ -37,14 +39,14 @@ class Shortest:
             if i == nPoint:  # 出発地から全ての地点までの最短距離が確定
                 break        # していれば、最短距離探索処理を抜ける
 
-            j = i + 1  # 23
+            j = i + 1
             while j < nPoint:  # 最短距離がより短い地点を探す
                 if not(self.pFixed[j]) and self.pDist[j] < self.pDist[i]:
                     i = j
                 j += 1
 
             sPoint = i  # α
-            self.pFixed[sPoint] = True  # 29 出発地からの最短距離を確定する
+            self.pFixed[sPoint] = True  # 出発地からの最短距離を確定する
             j = 0
             while j < nPoint:
                 # print(j, Distance[sPoint][j], sPoint)
@@ -58,8 +60,7 @@ class Shortest:
             # print('pDist', self.pDist)
             # print('pRoute', self.pRoute)
 
-        # β
-        self.sDist = self.pDist[dp]
+        self.sDist = self.pDist[dp]  # β
         j = 0
         i = dp
         while i != sp:
@@ -89,7 +90,8 @@ D1 = [
     [-1, -1, 4, -1, 0, 5],
     [-1, -1, -1, 4, 5, 0],
 ]
+
 s = Shortest()
-print(s.ShortestPath(D0, 0, 6))
+print(s.ShortestPath(D0, 0, 6))  # 最短 13日
 s.__init__()
-print(s.ShortestPath(D1, 0, 5))
+print(s.ShortestPath(D1, 0, 5))  # 最短 8日
