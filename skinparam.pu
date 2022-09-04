@@ -1,0 +1,15 @@
+skinparam Shadowing false
+
+skinparam object {
+    FontColor #000000 
+    FontSize 24 
+    BackgroundColor white
+    BorderColor lightgray
+    AttributeFontSize 14 
+    AttributeFontColor gray
+}
+
+skinparam arrow {
+    FontColor #0000ff 
+    Color #lightgray
+}
