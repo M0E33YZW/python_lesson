@@ -8,7 +8,7 @@
 
 
 def validateCreditNumber(s):
-    is_odd = True
+    is_even = False
     num = 0
 
     i = len(s) - 1
@@ -20,11 +20,12 @@ def validateCreditNumber(s):
         except Exception as e:
             return False
 
-        if not is_odd:
-            value = value * 2 - 9 if value * 2 > 9 else value * 2
+        if is_even:
+            value = (value*2) // 10 + (value*2) % 10
+            # value = value * 2 - 9 if value * 2 > 9 else value * 2
         num += value
 
-        is_odd = not is_odd
+        is_even = not is_even
         i -= 1
 
     return num % 10 == 0
