@@ -20,10 +20,9 @@ def validateCreditNumber(s):
         except Exception as e:
             return False
 
-        if is_odd:
-            num += value
-        else:
-            num += value * 2 - 9 if value * 2 >= 10 else value * 2
+        if not is_odd:
+            value = value * 2 - 9 if value * 2 >= 10 else value * 2
+        num += value
 
         is_odd = not is_odd
         i -= 1
