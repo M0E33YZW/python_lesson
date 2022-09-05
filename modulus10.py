@@ -6,6 +6,7 @@
 4. 正しいカード番号ならこの合計が10で割り切れる。
 '''
 
+
 def validateCreditNumber(s):
     is_odd = True
     num = 0
