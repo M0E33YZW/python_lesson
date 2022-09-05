@@ -21,7 +21,7 @@ def validateCreditNumber(s):
             return False
 
         if not is_odd:
-            value = value * 2 - 9 if value * 2 >= 10 else value * 2
+            value = value * 2 - 9 if value * 2 > 9 else value * 2
         num += value
 
         is_odd = not is_odd
