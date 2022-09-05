@@ -1,3 +1,4 @@
+# modulus30
 inspection_dict = {'␣': 0, '.': 1, ',': 2, '?': 3}
 
 for i in range(26):
