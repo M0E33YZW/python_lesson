@@ -8,7 +8,7 @@ class Shortest:
     # 戻値 なし
     def __init__(self):
         self.sRoute = []  # 出発地から目的地までの最短経路上の地点の地点番号を目的地から出発地までの順に設定する1次元配列
-        self.sDist = MAX_VAL  # 出発地から目的地までの最短距離
+        self.sDist = MAX_VAL  # 出発地から目的地までの最短距離を設定する配列
         self.pFixed = []
         self.pDist = []
         self.pRoute = []
@@ -28,7 +28,7 @@ class Shortest:
         # print('sRoute', self.sRoute)
         # print('pDist', self.pDist)
         # print('pFixed', self.pFixed)
-        self.pDist[sp] = 0  # 11出発地から出発地自体への最短距離に0を設定する
+        self.pDist[sp] = 0  # 出発地から出発地自体への最短距離に0を設定する
         while True:  # 最短経路探索処理
             i = 0
             while i < nPoint:  # 未確定の地点を一つ探す
@@ -49,18 +49,16 @@ class Shortest:
             self.pFixed[sPoint] = True  # 出発地からの最短距離を確定する
             j = 0
             while j < nPoint:
-                # print(j, Distance[sPoint][j], sPoint)
                 if Distance[sPoint][j] > 0 and not (self.pFixed[j]):
                     newDist = self.pDist[sPoint] + Distance[sPoint][j]
-                    # print(newDist, self.pDist, self.pRoute)
                     if newDist < self.pDist[j]:
                         self.pDist[j] = newDist
                         self.pRoute[j] = sPoint
                 j += 1
-            # print('pDist', self.pDist)
-            # print('pRoute', self.pRoute)
 
-        self.sDist = self.pDist[dp]  # β
+        # β
+        # 出発地から目的地までの最短距離を sDist に，最短経路上の地点の地点番号を目的地から出発地までの順に配列 sRoute に設定する。
+        self.sDist = self.pDist[dp]
         j = 0
         i = dp
         while i != sp:
@@ -70,8 +68,8 @@ class Shortest:
 
         self.sRoute[j] = sp
 
-        return self.sDist
-
+        return self.sDist, self.sRoute
+        # 配列と最短距離の2つのフィールドを持ったクラスを返す
 
 D0 = [
     [0, 2, 8, 4, -1, -1, -1],
@@ -93,5 +91,9 @@ D1 = [
 
 s = Shortest()
 print(s.ShortestPath(D0, 0, 6))  # 最短 13日
-s.__init__()
-print(s.ShortestPath(D1, 0, 5))  # 最短 8日
+s = Shortest()
+print(s.ShortestPath(D0, 2, 3))  # 最短 11日
+s = Shortest()
+print(s.ShortestPath(D0, 1, 5))  # 最短 8日
+# s = Shortest()
+# print(s.ShortestPath(D1, 0, 5))  # 最短 8日
