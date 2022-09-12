@@ -1,13 +1,34 @@
 def lchild(i: int):
-    return 2*i+1
+    return 2 * i + 1
 
 
 def rchild(i: int):
-    return 2*i+2
+    return 2 * i + 2
 
 
 def parent(i: int):
-    return (i-1)//2
+    return (i-1) // 2
+
+
+# iで指定されたノードの子ノードのうち、大きい値を持つノードのindexを返却
+# iで指定されたノードの子ノードが、配列の検索範囲外の場合は例外を送出する
+# last：配列の検索範囲の最後のindex
+
+def bigChild(i: int, last: int):
+    left = lchild(i)
+    if left > last:
+        raise Exception('検索範囲外です')
+
+    right = rchild(i)
+    left_value = heap[left]
+    if right > last:
+        return left
+
+    right_value = heap[right]
+    if left_value <= right_value:
+        return right
+    else:
+        return left
 
 
 def swap(heap: list, i: int, j: int):
@@ -38,16 +59,17 @@ def makeHeap(data: list, heap: list):
 def downHeap(heap: list, hlast: int):
     n = 0
     while lchild(n) <= hlast:
-        tmp = lchild(n)
-        if rchild(n) <= hlast and heap[tmp] <= heap[rchild(n)]:
-            tmp = rchild(n)
+        bigger = bigChild(n, hlast)
+        # bigger = lchild(n)
+        # if rchild(n) <= hlast and heap[bigger] <= heap[rchild(n)]:
+        #     bigger = rchild(n)
 
-        if heap[tmp] > heap[n]:
-            swap(heap, n, tmp)
+        if heap[bigger] > heap[n]:
+            swap(heap, n, bigger)
         else:
             return
 
-        n = tmp
+        n = bigger
 
 
 def heapSort(data: list, heap: list):
@@ -64,7 +86,6 @@ def heapSort(data: list, heap: list):
     print('heapSort実行後の配列 => ', heap)
 
 
-# data = [30, 60, 45, 15, 5, 10, 20]
 data = [60, 15, 45, 30, 5, 10, 20]
 heap = []
 for _ in data:
