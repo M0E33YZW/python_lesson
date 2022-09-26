@@ -63,4 +63,7 @@ def compute(Expression: list):
     return Value[0]
 
 
-print(compute('2×(34-(5+67)÷8)'))
+# print(compute('2×(34-(5+67)÷8)'))  # answer: 50
+# print(compute('2×(-1)'))  # answer: -2
+print(compute('(+2)×((-3)+(-4))'))  # answer: -14
+# print(compute('+2×(-3+(-4))'))  # answer: -14
