@@ -1,3 +1,6 @@
+# 葉である節の個数
+size = 4
+
 # 同じ要素番号に対応する要素の組みによって，1つの節を表す4つの1次元配列
 # 親
 parent = [-1 for _ in range(7)]
@@ -8,19 +11,12 @@ right = [-1 for _ in range(7)]
 # 節の値
 freq = [10, 2, 4, 3, 5, 9, 19]
 
-# 葉である節の個数
-size = 6
 
 '''
 ハフマン木を表現する配列を作成する
 '''
-def Huffman(
-    size: int, 
-    parent: list[int],
-    left: list[int],
-    right: list[int],
-    freq: list[int]
-):
+def Huffman(size: int, parent: list[int], left: list[int],
+            right: list[int], freq: list[int]):
     node = []
     nsize = 0
     SortNode(size, parent, freq, nsize, node)
