@@ -1,15 +1,16 @@
+'AAAABBCDCDDACCAAAAA'
+Max = 7
 # 葉である節の個数
 size = 4
-
 # 同じ要素番号に対応する要素の組みによって，1つの節を表す4つの1次元配列
 # 親
-parent = [-1 for _ in range(7)]
+parent = [-1 for _ in range(Max)]
 # 左側の子
-left = [-1 for _ in range(7)]
+left = [-1 for _ in range(Max)]
 # 右側の子
-right = [-1 for _ in range(7)]
+right = [-1 for _ in range(Max)]
 # 節の値
-freq = [10, 2, 4, 3]
+freq = [10, 2, 4, 3, 5, 9, 19]
 
 
 '''
@@ -17,7 +18,7 @@ freq = [10, 2, 4, 3]
 '''
 def Huffman(size: int, parent: list[int], left: list[int],
             right: list[int], freq: list[int]):
-    node = [0 for _ in range(7)]
+    node = [0 for _ in range(Max)]
     nsize = 0
     SortNode(size, parent, freq, nsize, node)
     while nsize >= 2:
@@ -31,6 +32,11 @@ def Huffman(size: int, parent: list[int], left: list[int],
         size += 1
         SortNode(size, parent, freq, nsize, node)
 
+    print('parent:', parent)
+    print('freq  :', freq)
+    print('left  :', left)
+    print('right :', right)
+    print('node  :', node)
 
 '''
 親が作成されていない節を抽出し，節の値の昇順に整列し，
@@ -58,27 +64,31 @@ def SortNode(size: int, parent: list[int], freq: list[int],
 https://docs.python.org/3/library/functions.html#sorted
 '''
 def Sort(freq: list[int], nsize: int, node: list[int]):
-    print('freq', freq)
-    print('node', node)
+    # print('freq', freq)
+    # print('node', node)
     dic = { key: val for key, val in zip(freq, node) }
-    print(dic)
+    # print(dic)
     dic2 = sorted(dic.items())
-    print(dic2)
+    # print(dic2)
     node = []
     freq = []
     for i in dic2:
         node.append(i[0])
         freq.append(i[1])
-    print('node', node)
+    # print('node', node)
 
 
 def Encode(k: int, parent: list[int], left: list[int]):
     if parent[k] >= 0:
         Encode(parent[k], parent, left)
+
+        result = ''
         if left[parent[k]] == k:
-            print("0")
+            result += '0'
         else:
-            print("1")
+            result += '1'
+        print(result)
 
 
 Huffman(size, parent, left, right, freq)
+Encode(0, parent, left)
