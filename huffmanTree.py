@@ -1,29 +1,36 @@
 from functools import cmp_to_key
 'AAAABBCDCDDACCAAAAA'
 Max = 7
-# 葉である節の個数
+# 葉である節の個数('A', 'B', 'C', 'D')
 size = 4
 # 同じ要素番号に対応する要素の組みによって，1つの節を表す4つの1次元配列
+# 節が葉のとき，配列 left と配列 right の要素の値は，いずれも－1
+# 節が根のとき，配列 parent の要素の値は－1である
 # 親
 parent = [-1 for _ in range(Max)]
 # 左側の子
 left = [-1 for _ in range(Max)]
 # 右側の子
 right = [-1 for _ in range(Max)]
-# 出現回数
+# 文字の出現回数
 freq = [-1 for _ in range(Max)]
+
 freq[0] = 10
 freq[1] = 2
 freq[2] = 4
 freq[3] = 3
-print('freq初期状態', freq)
+
+# print('parent初期状態:', parent)
+# print('left初期状態  :', left)
+# print('right初期状態 :', right)
+# print('freq初期状態  :', freq)
 
 
 '''
 ハフマン木を表現する配列を作成する
 '''
 def Huffman(size: int, parent: list[int], left: list[int], right: list[int], freq: list[int]):
-    node = [0 for _ in range(Max)]
+    node = [0 for _ in range(Max)]  # 節を表す要素組の要素番号
     nsize = SortNode(size, parent, freq, node)
     while nsize >= 2:
         i = node[0]  # 最も小さい値を持つ要素組の要素番号
@@ -36,17 +43,16 @@ def Huffman(size: int, parent: list[int], left: list[int], right: list[int], fre
         size += 1
         nsize = SortNode(size, parent, freq, node)
 
-    print('parent:', parent)
-    print('freq  :', freq)
-    print('left  :', left)
-    print('right :', right)
-    print('node  :', node)
+        print('parent:', parent)
+        print('left  :', left)
+        print('right :', right)
+        print('freq  :', freq)
+        print('node  :', node)
 
 
 '''
-親が作成されていない節を抽出し，出現回数の昇順に整列し，
-節を表す要素組の要素番号を順に配列 node に格納し，
-その個数を変数 nsize に格納する。
+親が作成されていない節を抽出、出現回数の昇順に整列し，
+節を表す要素組の要素番号を順に配列 node に格納し，その個数を変数 nsize に格納する。
 親が作成されていない節を表す要素組の要素番号を抽出し，節の値の昇順に整列する。
 '''
 def SortNode(size: int, parent: list[int], freq: list[int], node: list[int]):
@@ -57,6 +63,7 @@ def SortNode(size: int, parent: list[int], freq: list[int], node: list[int]):
             node[nsize] = i
             nsize += 1
         i += 1
+
     Sort(freq, node)
     return nsize
 
@@ -73,7 +80,7 @@ def Sort(freq: list[int], node: list[int]):
     def cmpFreq(a, b):
         return freq[a] - freq[b]
 
-    print(sorted(node, key=cmp_to_key(cmpFreq)))
+    print('sorted', sorted(node, key=cmp_to_key(cmpFreq)))
 
 
 def Encode(k: int, parent: list[int], left: list[int]):
@@ -89,4 +96,4 @@ def Encode(k: int, parent: list[int], left: list[int]):
 
 
 Huffman(size, parent, left, right, freq)
-Encode(0, parent, left)
+Encode(5, parent, left)
